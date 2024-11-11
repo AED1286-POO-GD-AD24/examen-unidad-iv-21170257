@@ -1,19 +1,34 @@
+// Clase abstracta Producto
 package clases;
 
-public abstract class Producto 
-{
-    public String nombre;
-    public double precio;
+public abstract class Producto{
 
-    // Constructor
-    public Producto(String nombre, double precio)
-     {
+    private String nombre;
+    private double precio;
+
+    public Producto(String nombre, double precio) {
         this.nombre = nombre;
         this.precio = precio;
     }
 
-   
-    public abstract String getNombre();
-    public abstract double getPrecio();
-}
+    public String getNombre() {
+        return nombre;
+    }
 
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
+    @Override
+    public String toString() {
+    return "Producto: " + nombre + ", Precio: $" + precio;
+    } 
+}

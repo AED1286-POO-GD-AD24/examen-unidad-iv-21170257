@@ -1,35 +1,39 @@
 package clases;
 
-import miPrincipal.Producto;
-import java.util.ArrayList;
-import java.util.List;
+public class Carrito<T extends Producto> {
+    private T[] productos;
+    private int indice;
 
-public class Carrito {
-    private List<Producto> productos;
-
-    // Constructor
-    public Carrito() {
-        productos = new ArrayList<>();
+    @SuppressWarnings("unchecked")
+    public Carrito(int capacidad) {
+        productos = (T[]) new Producto[capacidad];
+        indice = 0;
     }
 
-    // Método para agregar productos al carrito
-    public void agregarProducto(Producto producto) {
-        productos.add(producto);
+    public void agregarProducto(T producto) {
+        if (indice < productos.length) {
+            productos[indice++] = producto;
+        } else {
+            System.out.println("Carrito lleno, no se puede agregar más productos.");
+        }
     }
 
-    // Método para calcular el total del carrito
     public double calcularTotal() {
         double total = 0;
         for (Producto producto : productos) {
-            total += producto.getPrecio();
+            if (producto != null) {
+                total += producto.getPrecio();
+            }
         }
         return total;
     }
-
-    // Método para mostrar los productos del carrito
+    
     public void mostrarProductos() {
+        System.out.println("Lista de Productos:");
         for (Producto producto : productos) {
-            System.out.println(producto.getNombre() + " - Precio: $" + producto.getPrecio());
+            if (producto != null) { 
+                System.out.println(producto);
+            }
         }
-    }
+    }    
 }
